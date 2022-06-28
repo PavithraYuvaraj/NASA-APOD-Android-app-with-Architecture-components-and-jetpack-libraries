@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">APOD</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="tab_home">Home</string>
+    <string name="tab_favourites">Favourites</string>
+    <string name="title_activity_expanded_view">ExpandedViewActivity</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+
+    <string name="no_internet">No internet connection available</string>
+    <string name="no_internet_message">Please turn on your network connection.</string>
+    <string name="ok">Ok</string>
+
+    <string name="use_as_wallpaper">Set as Wallpaper</string>
+    <string name="use_as_wallpaper_msg">Are you sure to set the image as wallpaper?</string>
+    <string name="use_as_wallpaper_positive_button">Confirm</string>
+    <string name="use_as_wallpaper_negative_button">Cancel</string>
+</resources>

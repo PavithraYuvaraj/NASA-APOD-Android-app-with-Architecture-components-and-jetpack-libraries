@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+
+    </data>
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".MainActivity"
+        android:orientation="vertical">
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tab_layout"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            app:tabBackground="?attr/colorPrimary"
+            app:tabGravity="fill"
+            app:tabIndicatorHeight="2dp"
+            app:tabRippleColor="@null"
+            app:tabIndicatorColor="@color/smoke"
+            app:tabMode="fixed"
+            app:tabSelectedTextColor="@color/smoke"
+            app:tabTextColor="@color/slate_gray"
+            app:tabMaxWidth="0dp">
+
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/tab_home"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/tab_home"
+                android:alpha="1" />
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/tab_fav"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/tab_favourites"
+                android:background="@color/white"
+                android:shadowColor="@color/white"/>
+        </com.google.android.material.tabs.TabLayout>
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/view_pager"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+     <!--   <FrameLayout
+            android:id="@+id/fragment_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>-->
+
+
+    </LinearLayout>
+</layout>
