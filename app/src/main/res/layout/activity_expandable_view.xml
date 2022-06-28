@@ -33,7 +33,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/expanded_image_view"
-                android:layout_margin="5dp"
+                android:layout_margin="10dp"
                 android:textAppearance="@style/TextAppearance.AppCompat.Title"
                 android:text="@{pictureViewModel.pictureLiveData.title}" />
 
@@ -42,7 +42,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/title_tv"
-                android:layout_margin="5dp"
+                android:layout_margin="10dp"
                 android:textAppearance="@style/TextAppearance.AppCompat.SearchResult.Title"
                 android:text="@{pictureViewModel.pictureLiveData.date}" />
 
@@ -51,8 +51,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/date_tv"
-                android:layout_margin="5dp"
-                android:textAppearance="@style/TextAppearance.AppCompat.SearchResult.Subtitle"
+                android:layout_margin="10dp"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:text="@{pictureViewModel.pictureLiveData.explanation}" />
         </RelativeLayout>`
     </ScrollView>
