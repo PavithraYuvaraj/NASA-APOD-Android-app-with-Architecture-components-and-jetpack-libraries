@@ -1,0 +1,5 @@
+NASA APOD - Privacy policy
+This is an Android app created by the Yuvaraj Pavithra.
+The source code is available in Github and the app can be found in the Googlr play store.
+
+The app does not collect any personal information for processing and it will not ask for any additional permissions to the user.
