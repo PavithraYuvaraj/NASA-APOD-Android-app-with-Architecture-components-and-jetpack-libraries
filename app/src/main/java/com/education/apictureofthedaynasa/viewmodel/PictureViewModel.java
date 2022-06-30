@@ -1,4 +1,4 @@
-package com.education.apictureofthedaynasa;
+package com.education.apictureofthedaynasa.viewmodel;
 
 import static com.education.apictureofthedaynasa.Constants.DATE_FORMAT;
 
@@ -10,6 +10,11 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
+
+import com.education.apictureofthedaynasa.utils.NetworkUtils;
+import com.education.apictureofthedaynasa.Picture;
+import com.education.apictureofthedaynasa.networking.PictureAPIResponseListener;
+import com.education.apictureofthedaynasa.database.PictureRepository;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;

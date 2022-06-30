@@ -14,7 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.APictureOfTheDayNASA.custom">
         <activity
-            android:name="com.education.apictureofthedaynasa.ExpandableViewActivity"
+            android:name="com.education.apictureofthedaynasa.ui.ExpandableViewActivity"
             android:exported="false" />
 
         <provider
@@ -28,7 +28,7 @@
         </provider>
 
         <activity
-            android:name="com.education.apictureofthedaynasa.MainActivity"
+            android:name="com.education.apictureofthedaynasa.ui.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

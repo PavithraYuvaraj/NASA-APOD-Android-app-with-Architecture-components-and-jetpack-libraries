@@ -1,4 +1,6 @@
-package com.education.apictureofthedaynasa;
+package com.education.apictureofthedaynasa.networking;
+
+import com.education.apictureofthedaynasa.Picture;
 
 public interface PictureAPIResponseListener {
     void onFailure();

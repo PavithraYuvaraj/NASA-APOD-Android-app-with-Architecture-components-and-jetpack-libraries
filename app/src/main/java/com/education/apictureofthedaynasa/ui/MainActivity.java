@@ -1,4 +1,4 @@
-package com.education.apictureofthedaynasa;
+package com.education.apictureofthedaynasa.ui;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,6 +9,8 @@ import androidx.viewpager2.widget.ViewPager2;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.education.apictureofthedaynasa.utils.NetworkUtils;
+import com.education.apictureofthedaynasa.R;
 import com.education.apictureofthedaynasa.databinding.ActivityMainBinding;
 import com.google.android.material.tabs.TabLayout;
 

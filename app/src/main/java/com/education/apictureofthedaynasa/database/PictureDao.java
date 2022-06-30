@@ -1,10 +1,12 @@
-package com.education.apictureofthedaynasa;
+package com.education.apictureofthedaynasa.database;
 
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
+
+import com.education.apictureofthedaynasa.Picture;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package com.education.apictureofthedaynasa;
+package com.education.apictureofthedaynasa.utils;
 
 import android.content.Context;
 import android.net.ConnectivityManager;

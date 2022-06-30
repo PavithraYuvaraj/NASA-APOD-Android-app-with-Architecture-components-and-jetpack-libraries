@@ -1,4 +1,4 @@
-package com.education.apictureofthedaynasa;
+package com.education.apictureofthedaynasa.ui;
 
 import static com.education.apictureofthedaynasa.Constants.DATE_OF_FAV_PIC_TO_EXPAND;
 
@@ -9,6 +9,8 @@ import androidx.lifecycle.ViewModelProvider;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.education.apictureofthedaynasa.viewmodel.PictureViewModel;
+import com.education.apictureofthedaynasa.R;
 import com.education.apictureofthedaynasa.databinding.ActivityExpandableViewBinding;
 
 public class ExpandableViewActivity extends AppCompatActivity {

@@ -1,4 +1,4 @@
-package com.education.apictureofthedaynasa;
+package com.education.apictureofthedaynasa.networking;
 
 
 import java.util.Map;

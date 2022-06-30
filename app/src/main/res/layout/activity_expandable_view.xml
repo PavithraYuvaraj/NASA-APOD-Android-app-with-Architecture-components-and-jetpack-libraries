@@ -5,7 +5,7 @@
     <data>
         <variable
             name="pictureViewModel"
-            type="com.education.apictureofthedaynasa.PictureViewModel" />
+            type="com.education.apictureofthedaynasa.viewmodel.PictureViewModel" />
     </data>
 
     <ScrollView
@@ -14,7 +14,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:context=".ExpandableViewActivity">
+            tools:context=".ui.ExpandableViewActivity">
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar_view"

@@ -9,7 +9,7 @@
    <FrameLayout
        android:layout_width="match_parent"
        android:layout_height="match_parent"
-       tools:context=".FavouritesFragment">
+       tools:context=".ui.FavouritesFragment">
 
       <androidx.recyclerview.widget.RecyclerView
           android:id="@+id/recycler_view"

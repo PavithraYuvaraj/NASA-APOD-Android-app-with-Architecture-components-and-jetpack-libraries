@@ -1,10 +1,14 @@
-package com.education.apictureofthedaynasa;
+package com.education.apictureofthedaynasa.database;
 
 import android.app.Application;
 import android.content.Context;
 import android.util.Log;
 
 import androidx.lifecycle.LiveData;
+
+import com.education.apictureofthedaynasa.Picture;
+import com.education.apictureofthedaynasa.networking.PictureAPIResponseListener;
+import com.education.apictureofthedaynasa.networking.RetrofitProvider;
 
 import java.util.List;
 
@@ -15,7 +19,7 @@ public class PictureRepository {
     private PictureAPIResponseListener mListener;
     private Context mContext;
 
-    PictureRepository(Application application, PictureAPIResponseListener listener) {
+    public PictureRepository(Application application, PictureAPIResponseListener listener) {
         PictureRoomDatabase database = PictureRoomDatabase.getDatabaseInstance(application);
         mPictureDao = database.mPictureDao();
         mLiveDataPictureList = mPictureDao.getSortedPictureList();
@@ -23,11 +27,11 @@ public class PictureRepository {
         mContext = application.getApplicationContext();
     }
 
-    LiveData<List<Picture>> getAllFavouritePictures() {
+    public LiveData<List<Picture>> getAllFavouritePictures() {
         return mLiveDataPictureList;
     }
 
-    void insert(Picture picture) {
+    public void insert(Picture picture) {
         PictureRoomDatabase.mDatabaseWriteExecutor.execute(new Runnable() {
             @Override
             public void run() {
@@ -37,18 +41,18 @@ public class PictureRepository {
         });
     }
 
-    void deleteItem(String date) {
+    public void deleteItem(String date) {
         PictureRoomDatabase.mDatabaseWriteExecutor.execute(() -> {
             Log.d(TAG, "deleteItem: removing from db");
             mPictureDao.delete(date);
         });
     }
 
-    LiveData<Boolean> isItemExisting(String date) {
+    public LiveData<Boolean> isItemExisting(String date) {
         return mPictureDao.isItemExisting(date);
     }
 
-    void getPicForTheDate(String date) {
+    public void getPicForTheDate(String date) {
         Log.d(TAG, "getPicForTheDate: date " + date);
         LiveData<Picture> pictureLiveData = mPictureDao.getPicForTheDate(date);
         Log.d(TAG, "getPicForTheDate: pictureLiveData " + pictureLiveData.getValue());

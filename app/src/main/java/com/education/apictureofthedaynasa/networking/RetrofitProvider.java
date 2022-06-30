@@ -1,4 +1,4 @@
-package com.education.apictureofthedaynasa;
+package com.education.apictureofthedaynasa.networking;
 
 import static com.education.apictureofthedaynasa.Constants.API_KEY;
 import static com.education.apictureofthedaynasa.Constants.API_KEY_VALUE;
@@ -10,6 +10,9 @@ import static com.education.apictureofthedaynasa.Constants.TITLE;
 
 import android.content.Context;
 import android.util.Log;
+
+import com.education.apictureofthedaynasa.utils.NetworkUtils;
+import com.education.apictureofthedaynasa.Picture;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -35,7 +38,7 @@ public class RetrofitProvider {
     private PictureAPIResponseListener mPictureAPIResponseListener;
     private Context mContext;
 
-    RetrofitProvider(PictureAPIResponseListener listener, Context context) {
+    public RetrofitProvider(PictureAPIResponseListener listener, Context context) {
         mPictureAPIResponseListener = listener;
         mContext = context;
         if(mPictureApiService == null) {

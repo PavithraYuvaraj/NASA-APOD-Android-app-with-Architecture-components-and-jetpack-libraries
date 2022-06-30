@@ -1,4 +1,4 @@
-package com.education.apictureofthedaynasa;
+package com.education.apictureofthedaynasa.ui;
 
 import static com.education.apictureofthedaynasa.Constants.DATE_FORMAT;
 
@@ -14,6 +14,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.education.apictureofthedaynasa.viewmodel.PictureViewModel;
+import com.education.apictureofthedaynasa.R;
 import com.education.apictureofthedaynasa.databinding.FragmentHomeBinding;
 
 import java.text.SimpleDateFormat;

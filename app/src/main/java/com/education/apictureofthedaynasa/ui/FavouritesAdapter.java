@@ -1,4 +1,4 @@
-package com.education.apictureofthedaynasa;
+package com.education.apictureofthedaynasa.ui;
 
 import android.content.Context;
 import android.util.Log;
@@ -11,6 +11,9 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.education.apictureofthedaynasa.Picture;
+import com.education.apictureofthedaynasa.R;
 
 public class FavouritesAdapter extends ListAdapter<Picture, FavouritesAdapter.PictureViewHolder> {
 
