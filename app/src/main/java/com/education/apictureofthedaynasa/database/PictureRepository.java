@@ -69,7 +69,7 @@ public class PictureRepository {
     public void getPictureOfTheDay(String date) {
         Log.d(TAG, "getPictureOfTheDay: date "+ date);
 
-        RetrofitProvider provider = new RetrofitProvider(mListener, mContext);
+        RetrofitProvider provider = RetrofitProvider.getInstance(mListener, mContext);
         provider.makeAPIRequest(date);
     }
 }

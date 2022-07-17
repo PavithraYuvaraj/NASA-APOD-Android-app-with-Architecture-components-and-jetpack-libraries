@@ -9,9 +9,9 @@ import androidx.lifecycle.ViewModelProvider;
 import android.os.Bundle;
 import android.util.Log;
 
-import com.education.apictureofthedaynasa.viewmodel.PictureViewModel;
 import com.education.apictureofthedaynasa.R;
 import com.education.apictureofthedaynasa.databinding.ActivityExpandableViewBinding;
+import com.education.apictureofthedaynasa.viewmodel.PictureViewModel;
 
 public class ExpandableViewActivity extends AppCompatActivity {
 
@@ -33,14 +33,16 @@ public class ExpandableViewActivity extends AppCompatActivity {
         }
 
         mPictureViewModel = new ViewModelProvider(this).get(PictureViewModel.class);
-
         mPictureViewModel.getPictureOfTheDay(mDate).observe(this, picture -> {
-            ImageLoader imageLoader = new ImageLoader();
-            imageLoader.loadImage(getApplicationContext(), picture.getHdUrl(), mBinding.expandedImageView);
+            Log.d(TAG, "onCreate: picture " + picture.getDate());
+            if(picture != null) {
+                ImageLoader imageLoader = new ImageLoader();
+                imageLoader.loadImage(getApplicationContext(), picture.getHdUrl(), mBinding.expandedImageView);
 
-            mBinding.dateTv.setText(picture.getDate());
-            mBinding.descTv.setText(picture.getExplanation());
-            mBinding.titleTv.setText(picture.getTitle());
+                mBinding.dateTv.setText(picture.getDate());
+                mBinding.descTv.setText(picture.getExplanation());
+                mBinding.titleTv.setText(picture.getTitle());
+            }
         });
 /*
         mBinding.toolbarView.setNavigationIcon(getResources().getDrawable(R.drawable.ic_baseline_close_24, this.getTheme()));

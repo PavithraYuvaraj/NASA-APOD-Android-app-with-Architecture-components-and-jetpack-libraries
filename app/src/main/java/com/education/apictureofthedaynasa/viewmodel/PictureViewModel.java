@@ -37,18 +37,21 @@ public class PictureViewModel extends AndroidViewModel implements PictureAPIResp
 
     public PictureViewModel(@NonNull Application application) {
         super(application);
+        Log.d(TAG, "PictureViewModel: constructor");
         mPictureRepository = new PictureRepository(application, this);
         mPictureList = mPictureRepository.getAllFavouritePictures();
         mContext = application.getApplicationContext();
-    }
-
-    public LiveData<Picture> getPictureOfTheDay(String date) {
-        Log.d(TAG, "getPictureOfTheDay: date "+ date);
-
         if(mPictureMutableLiveData == null) {
             mPictureMutableLiveData = new MutableLiveData<>();
             mTitle = new MutableLiveData<>();
         }
+        //mCurrentFavouritePicture = new MutableLiveData<>();
+    }
+
+    public MutableLiveData<Picture> getPictureOfTheDay(String date) {
+        Log.d(TAG, "getPictureOfTheDay: date "+ date);
+
+
        /* if(mPictureMutableLiveData == null) {
             mPictureMutableLiveData = new MutableLiveData<>();
             mTitle = new MutableLiveData<>();
@@ -56,6 +59,11 @@ public class PictureViewModel extends AndroidViewModel implements PictureAPIResp
         RetrofitProvider provider = new RetrofitProvider(this);
         provider.makeAPIRequest(date);*/
 
+        /*if(date == null) {
+            if(mPictureMutableLiveData.getValue() != null) {
+                date = mPictureMutableLiveData.getValue().getDate();
+            }
+        }*/
         mPictureRepository.getPicForTheDate(date);
 
         return mPictureMutableLiveData;
@@ -78,11 +86,11 @@ public class PictureViewModel extends AndroidViewModel implements PictureAPIResp
         mTitle.postValue(picture.getTitle());
     }
 
-    public LiveData<String> getTitle() {
+    public MutableLiveData<String> getTitle() {
         return mTitle;
     }
 
-    public LiveData<Picture> getPictureLiveData() {
+    public MutableLiveData<Picture> getPictureLiveData() {
         return mPictureMutableLiveData;
     }
 

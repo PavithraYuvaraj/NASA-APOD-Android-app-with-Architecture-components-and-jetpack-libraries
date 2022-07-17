@@ -11,6 +11,9 @@ import static com.education.apictureofthedaynasa.Constants.TITLE;
 import android.content.Context;
 import android.util.Log;
 
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
+
 import com.education.apictureofthedaynasa.utils.NetworkUtils;
 import com.education.apictureofthedaynasa.Picture;
 
@@ -37,18 +40,28 @@ public class RetrofitProvider {
     private PictureApiService mPictureApiService;
     private PictureAPIResponseListener mPictureAPIResponseListener;
     private Context mContext;
+    private static RetrofitProvider mRetrofitProvider;
+    private static OkHttpClient mOkHttpClient;
 
-    public RetrofitProvider(PictureAPIResponseListener listener, Context context) {
+    public static RetrofitProvider getInstance(PictureAPIResponseListener listener, Context context) {
+        if(mRetrofitProvider == null) {
+            mRetrofitProvider = new RetrofitProvider(listener, context);
+        }
+        return mRetrofitProvider;
+    }
+
+    private RetrofitProvider(PictureAPIResponseListener listener, Context context) {
         mPictureAPIResponseListener = listener;
         mContext = context;
         if(mPictureApiService == null) {
+            Log.d(TAG, "RetrofitProvider: inside private ");
             getPictureApiService();
         }
     }
 
     public void getPictureApiService() {
 
-        OkHttpClient okHttpClient = new OkHttpClient()
+        mOkHttpClient = new OkHttpClient()
                 .newBuilder()
                 .cache(new Cache(mContext.getCacheDir(), 10 * 1204 * 1204))
                 .addInterceptor(chain -> {
@@ -67,7 +80,7 @@ public class RetrofitProvider {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
-                .client(okHttpClient)
+                .client(mOkHttpClient)
                 .build();
         mPictureApiService = retrofit.create(PictureApiService.class);
     }

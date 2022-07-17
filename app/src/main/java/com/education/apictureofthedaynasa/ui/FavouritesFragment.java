@@ -1,6 +1,8 @@
 package com.education.apictureofthedaynasa.ui;
 
 import static com.education.apictureofthedaynasa.Constants.DATE_OF_FAV_PIC_TO_EXPAND;
+import static com.education.apictureofthedaynasa.Constants.DOWNLOAD;
+import static com.education.apictureofthedaynasa.Constants.WALLPAPER;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -12,6 +14,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.core.content.FileProvider;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -26,6 +29,7 @@ import com.education.apictureofthedaynasa.Picture;
 import com.education.apictureofthedaynasa.viewmodel.PictureViewModel;
 import com.education.apictureofthedaynasa.R;
 import com.education.apictureofthedaynasa.databinding.FragmentFavouritesBinding;
+import com.education.apictureofthedaynasa.viewmodel.SharedViewModel;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -104,13 +108,21 @@ public class FavouritesFragment extends Fragment implements RecyclerViewOnClickL
 //        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         mRecyclerView.setAdapter(mFavouritesAdapter);
 //        mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        mRecyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
+
+        mRecyclerView.setLayoutManager(
+                new GridLayoutManager(
+                getContext(),
+                getResources().getBoolean(R.bool.isTablet) ? 1 : 2));
 
         mPictureViewModel.getAllFavourites().observe(getViewLifecycleOwner(), pictures -> {
             Log.d(TAG, "onCreateView: size " + pictures.size());
             mFavouritesAdapter.submitList(pictures);
             mFavouritesAdapter.notifyDataSetChanged();
         });
+
+        requireActivity().getOnBackPressedDispatcher().
+                addCallback(getViewLifecycleOwner(),
+                new TwoPaneOnBackPressedCallback(mBinding.slidingPaneLayout));
 
         // Inflate the layout for this fragment
         //return inflater.inflate(R.layout.fragment_favourites, container, false);
@@ -124,19 +136,27 @@ public class FavouritesFragment extends Fragment implements RecyclerViewOnClickL
             case R.id.unfav:
                 deleteItemFromDB(position);
                 break;
-           /* case R.id.share_image:
-                shareImage(position, view);
-                break;*/
+            case R.id.download_image:
+//                downloadImage(position);
+                showAlertDialog(
+                        R.string.download_title,
+                        R.string.download_desc,
+                        R.string.alert_dialog_positive_button,
+                        R.string.alert_dialog_negative_button,
+                        position,
+                        DOWNLOAD);
+                break;
             case R.id.use_image:
                 showAlertDialog(
                         R.string.use_as_wallpaper,
                         R.string.use_as_wallpaper_msg,
-                        R.string.use_as_wallpaper_positive_button,
-                        R.string.use_as_wallpaper_negative_button,
-                        position);
+                        R.string.alert_dialog_positive_button,
+                        R.string.alert_dialog_negative_button,
+                        position, WALLPAPER);
                 break;
             case R.id.image_view_favs:
-                launchExpandedActivity(position);
+//                launchExpandedActivity(position);
+                openDetails(position);
                 break;
             default:
                 break;
@@ -149,6 +169,25 @@ public class FavouritesFragment extends Fragment implements RecyclerViewOnClickL
         Intent intent = new Intent(getActivity(), ExpandableViewActivity.class);
         intent.putExtra(DATE_OF_FAV_PIC_TO_EXPAND, mFavouritesAdapter.getCurrentList().get(position).getDate());
         startActivity(intent);
+    }
+
+    public void openDetails(int position) {
+        Bundle bundle = new Bundle();
+        bundle.putString(DATE_OF_FAV_PIC_TO_EXPAND, mFavouritesAdapter.getCurrentList().get(position).getDate());
+        Log.d(TAG, "openDetails: setting " + mFavouritesAdapter.getCurrentList().get(position).getDate());
+        SharedViewModel sharedViewModel = new ViewModelProvider(requireActivity()).get(SharedViewModel.class);
+        sharedViewModel.select(mFavouritesAdapter.getCurrentList().get(position));
+
+        FragmentTransaction ft = getChildFragmentManager().beginTransaction()
+                .setReorderingAllowed(true)
+                .replace(R.id.detail_container, ExpandedViewFragment.class, bundle);
+        // If we're already open and the detail pane is visible,
+        // crossfade between the fragments.
+        if (mBinding.slidingPaneLayout.isOpen()) {
+            ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+        }
+        ft.commit();
+        mBinding.slidingPaneLayout.open();
     }
 
     private void deleteItemFromDB(int position) {
@@ -165,6 +204,13 @@ public class FavouritesFragment extends Fragment implements RecyclerViewOnClickL
         String url = mFavouritesAdapter.getCurrentList().get(position).getHdUrl();
         ImageLoader imageLoader = new ImageLoader();
         imageLoader.setImageAsWallpaper(getContext(), url);
+    }
+
+    private void downloadImage(int position) {
+        Log.d(TAG, "downloadImage: posiiton " + position);
+        Picture picture = mFavouritesAdapter.getCurrentList().get(position);
+        ImageLoader imageLoader = new ImageLoader();
+        imageLoader.downloadImage(getContext(), picture.getHdUrl(), picture.getDate());
     }
 
     private void shareImage(int position, View view) {
@@ -227,19 +273,29 @@ public class FavouritesFragment extends Fragment implements RecyclerViewOnClickL
         startActivity(Intent.createChooser(shareIntent, "Share via"));*/
     }
 
-    private void showAlertDialog(int title, int message, int positive, int negative, int position) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+    private void showAlertDialog(int title, int message, int positive, int negative, int position, int action) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext(), androidx.appcompat.R.style.Theme_AppCompat_Dialog);
         builder.setTitle(title);
         builder.setMessage(message);
         builder.setNegativeButton(negative, (dialogInterface, i) -> {
             dialogInterface.dismiss();
         });
         builder.setPositiveButton(positive, ((dialogInterface, i) -> {
-            useImage(position);
+            switch (action) {
+                case WALLPAPER:
+                    useImage(position);
+                    break;
+                case DOWNLOAD:
+                    downloadImage(position);
+                    break;
+                default:
+                    break;
+            }
             dialogInterface.dismiss();
         }));
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
     }
+
 
 }

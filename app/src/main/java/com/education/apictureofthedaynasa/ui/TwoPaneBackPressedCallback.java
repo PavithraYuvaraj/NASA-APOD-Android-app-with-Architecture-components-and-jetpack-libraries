@@ -1,0 +1,42 @@
+package com.education.apictureofthedaynasa.ui;
+
+import android.view.View;
+
+import androidx.activity.OnBackPressedCallback;
+import androidx.annotation.NonNull;
+import androidx.slidingpanelayout.widget.SlidingPaneLayout;
+
+class TwoPaneOnBackPressedCallback extends OnBackPressedCallback
+        implements SlidingPaneLayout.PanelSlideListener {
+
+    private final SlidingPaneLayout mSlidingPaneLayout;
+
+    TwoPaneOnBackPressedCallback(@NonNull SlidingPaneLayout slidingPaneLayout) {
+        super(slidingPaneLayout.isSlideable() && slidingPaneLayout.isOpen());
+        mSlidingPaneLayout = slidingPaneLayout;
+        slidingPaneLayout.addPanelSlideListener(this);
+    }
+
+    @Override
+    public void handleOnBackPressed() {
+        // Return to the list pane when the system back button is pressed.
+        mSlidingPaneLayout.closePane();
+    }
+
+    @Override
+    public void onPanelSlide(@NonNull View panel, float slideOffset) {
+
+    }
+
+    @Override
+    public void onPanelOpened(@NonNull View panel) {
+        // Intercept the system back button when the detail pane becomes visible.
+        setEnabled(true);
+    }
+
+    @Override
+    public void onPanelClosed(@NonNull View panel) {
+        // Disable intercepting the system back button when the user returns to the list pane.
+        setEnabled(false);
+    }
+}

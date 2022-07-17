@@ -10,4 +10,7 @@ public final class Constants {
     public static final String TITLE = "title";
     public static final String DATE_FORMAT = "yyyy-MM-dd";
     public static final String DATE_OF_FAV_PIC_TO_EXPAND = "DATE_OF_FAV_PIC_TO_EXPAND";
+
+    public static final int WALLPAPER = 0;
+    public static final int DOWNLOAD = 1;
 }

@@ -56,7 +56,7 @@ public class FavouritesAdapter extends ListAdapter<Picture, FavouritesAdapter.Pi
 
         private ImageView mImageView;
         private ImageView mFavImageView;
-//        private ImageView mShareImageView;
+        private ImageView mDownloadImageView;
         private ImageView mUseImageImageView;
         private RecyclerViewOnClickListener mRecyclerViewOnClickListener;
         private int mPosition;
@@ -66,11 +66,11 @@ public class FavouritesAdapter extends ListAdapter<Picture, FavouritesAdapter.Pi
             super(itemView);
             mImageView = itemView.findViewById(R.id.image_view_favs);
             mFavImageView = itemView.findViewById(R.id.unfav);
-//            mShareImageView = itemView.findViewById(R.id.share_image);
+            mDownloadImageView = itemView.findViewById(R.id.download_image);
             mUseImageImageView = itemView.findViewById(R.id.use_image);
             mImageView.setOnClickListener(this);
             mFavImageView.setOnClickListener(this);
-//            mShareImageView.setOnClickListener(this);
+            mDownloadImageView.setOnClickListener(this);
             mUseImageImageView.setOnClickListener(this);
         }
 

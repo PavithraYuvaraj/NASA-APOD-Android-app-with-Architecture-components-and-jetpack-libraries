@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
 
         CustomViewPagerAdapter customViewPagerAdapter = new CustomViewPagerAdapter(getSupportFragmentManager(), getLifecycle());
         mBinding.viewPager.setAdapter(customViewPagerAdapter);
-
+        mBinding.viewPager.setUserInputEnabled(false);
         mBinding.tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {

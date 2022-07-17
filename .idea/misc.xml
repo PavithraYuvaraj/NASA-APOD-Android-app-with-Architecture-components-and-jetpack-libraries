@@ -12,14 +12,17 @@
         <entry key="app/src/main/res/drawable/ic_baseline_share_24.xml" value="0.112" />
         <entry key="app/src/main/res/drawable/ic_baseline_unfavorite_border_24.xml" value="0.112" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.112" />
-        <entry key="app/src/main/res/layout/activity_expandable_view.xml" value="0.2151268115942029" />
+        <entry key="app/src/main/res/layout/activity_expandable_view.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_expanded_view.xml" value="0.12006079027355623" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_splash.xml" value="0.1703125" />
         <entry key="app/src/main/res/layout/content_expanded_view.xml" value="0.2151268115942029" />
         <entry key="app/src/main/res/layout/favourites_card_view_item_layout.xml" value="0.12006079027355623" />
         <entry key="app/src/main/res/layout/favouritescardviewlayout.xml" value="0.2151268115942029" />
-        <entry key="app/src/main/res/layout/fragment_favourites.xml" value="0.246875" />
-        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.2151268115942029" />
+        <entry key="app/src/main/res/layout/fragment_expanded.xml" value="0.20256410256410257" />
+        <entry key="app/src/main/res/layout/fragment_expanded_view.xml" value="0.125" />
+        <entry key="app/src/main/res/layout/fragment_favourites.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.1" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_apod_launcher.xml" value="0.112" />
         <entry key="app/src/main/res/xml/external_files.xml" value="0.1" />
       </map>

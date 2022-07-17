@@ -21,6 +21,16 @@
 
     <string name="use_as_wallpaper">Set as Wallpaper</string>
     <string name="use_as_wallpaper_msg">Are you sure to set the image as wallpaper?</string>
-    <string name="use_as_wallpaper_positive_button">Confirm</string>
-    <string name="use_as_wallpaper_negative_button">Cancel</string>
+    <string name="alert_dialog_positive_button">Confirm</string>
+    <string name="alert_dialog_negative_button">Cancel</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="download_the_view">Download the Image</string>
+    <string name="delete_the_image">Delete the image</string>
+    <string name="set_as_wallpaper">Set as wallpaper</string>
+
+    <string name="download_title">Save image</string>
+    <string name="download_desc">Do you wish to save the image to the device?</string>
+
+    <string name="load_failed_message">Failed to load image. Please try again.</string>
 </resources>

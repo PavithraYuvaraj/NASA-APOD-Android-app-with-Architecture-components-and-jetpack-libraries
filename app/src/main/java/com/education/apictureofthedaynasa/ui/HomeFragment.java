@@ -3,6 +3,7 @@ package com.education.apictureofthedaynasa.ui;
 import static com.education.apictureofthedaynasa.Constants.DATE_FORMAT;
 
 import android.app.DatePickerDialog;
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.databinding.DataBindingUtil;
@@ -67,16 +68,36 @@ public class HomeFragment extends Fragment {
         mBinding.setLifecycleOwner(this);
 
 
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(DATE_FORMAT, Locale.US);
-        Date date = new Date();
-        getImageForTheDate(simpleDateFormat.format(date));
-
+//        if(mPictureViewModel.getPictureLiveData().getValue() == null) {
+//            Log.d(TAG, "onCreateView: inside if");
+            /*SimpleDateFormat simpleDateFormat = new SimpleDateFormat(DATE_FORMAT, Locale.US);
+            Date date = new Date();
+            getImageForTheDate(simpleDateFormat.format(date));*/
+//        }
+        String dateStr = null;
+        if(mPictureViewModel.getPictureLiveData().getValue() != null) {
+            dateStr = mPictureViewModel.getPictureLiveData().getValue().getDate();
+        } else {
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat(DATE_FORMAT, Locale.US);
+            Date date = new Date();
+            dateStr = simpleDateFormat.format(date);
+        }
+        getImageForTheDate(dateStr);
+        
         pickDate();
 
 
         addToFavourites();
 
         removeFromFavourites();
+
+        Log.d(TAG, "onCreateView: Build manufacturer " + Build.MANUFACTURER);
+        Log.d(TAG, "onCreateView: Build DEVICE " + Build.DEVICE);
+
+        Log.d(TAG, "onCreateView: Build HARDWARE " + Build.HARDWARE);
+
+        Log.d(TAG, "onCreateView: Build MODEL " + Build.MODEL);
+
 
 
         // Inflate the layout for this fragment
@@ -161,13 +182,15 @@ public class HomeFragment extends Fragment {
         };
 
         mBinding.calendarIv.setOnClickListener(v -> {
-            new DatePickerDialog(
+            DatePickerDialog datePickerDialog = new DatePickerDialog(
                     getContext(),
                     mDateSetListener,
                     mCalendar.get(Calendar.YEAR),
                     mCalendar.get(Calendar.MONTH),
                     mCalendar.get(Calendar.DAY_OF_MONTH)
-            ).show();
+            );
+            datePickerDialog.getDatePicker().setMaxDate(System.currentTimeMillis());
+            datePickerDialog.show();
         });
     }
 
